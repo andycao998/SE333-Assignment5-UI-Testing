@@ -18,7 +18,7 @@ public class TestTraditional {
 
     try (Playwright playwright = Playwright.create()) {
       Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
-        .setHeadless(false));
+        .setHeadless(true));
       BrowserContext context = browser.newContext(new Browser.NewContextOptions().setRecordVideoDir(Paths.get("videos/")).setRecordVideoSize(1280, 720));
       Page page = context.newPage();
       page.navigate("https://depaul.bncollege.com/");
