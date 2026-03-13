@@ -1,0 +1,30 @@
+name: Playwright Workflow
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  PLAYWRIGHT_JOB:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout-repo
+        uses: actions/checkout@v5
+
+      - name: setupJava
+        uses: actions/setup-java@v5
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          architecture: x64
+
+      - name: Build & Install
+        run: mvn -B install -D skipTests --no-transfer-progress
+
+      - name: Ensure Browsers are Installed
+        run: mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install --with-deps"
+
+      - name: Run Maven Test
+        run: mvn test
