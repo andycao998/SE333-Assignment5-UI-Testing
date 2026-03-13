@@ -33,7 +33,7 @@ public class TestTraditional {
       page.getByRole(AriaRole.BUTTON, new Page.GetByRoleOptions().setName("Price")).click();
       page.locator("#facet-price > .facet__values > .facet__list > li > form > label > .facet__list__label > .facet__list__mark > .facet-unchecked > svg").click();
       page.getByRole(AriaRole.LINK, new Page.GetByRoleOptions().setName("JBL Quantum True Wireless")).click();
-      assertThat(page.getByRole(AriaRole.HEADING, new Page.GetByRoleOptions().setName("JBL Quantum True Wireless Noise Cancelling Gaming Earbuds- Black"))).containsText("JBL Quantum True Wireless Noise Cancelling Gaming Earbuds- Black");
+      assertThat(page.getByRole(AriaRole.HEADING, new Page.GetByRoleOptions().setName("JBL Quantum True Wireless Noise Cancelling Gaming Earbuds- Black")).first()).containsText("JBL Quantum True Wireless Noise Cancelling Gaming Earbuds- Black");
       page.getByText("sku").nth(1).click();
       assertThat(page.getByText("sku").nth(1)).containsText("668972707");
       assertThat(page.getByText("$164.98")).containsText("$164.98");
